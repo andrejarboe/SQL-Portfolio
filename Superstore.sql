@@ -1,4 +1,5 @@
-#This project utilizes the following Superstore data: 
+-- This project utilizes the following Superstore data:
+
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -26,5 +27,22 @@ VALUES
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
 
-SELECT * FROM superstore
+-- Use a SELECT statement to order the items by price.
+SELECT item_name, price
+FROM superstore
 ORDER BY price DESC;
+
+-- Use a statement to show a statistic about the item prices
+SELECT
+SUM(price) AS total_price,
+AVG(price) AS average_price,
+MIN(price) AS min_price,
+MAX(price) AS max_price,
+COUNT(*) AS item_count
+FROM superstore;
+
+-- Show how many items have an average rating above 4.5 and are currently in stock
+SELECT COUNT(*) AS high_rated_in_stock_count
+FROM superstore
+WHERE average_rating > 4.5 AND stock_quantity > 0;
+
